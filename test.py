@@ -13,7 +13,7 @@ def is_valid_email(email):
     regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
     return bool(re.match(regex, email))
 
-file_path = 'Master Leads file2.csv'
+file_path = 'Master Leads file.csv'
 df = pd.read_csv(file_path)
 df.drop_duplicates()
 df_list = df.values.tolist()
