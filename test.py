@@ -31,10 +31,12 @@ new_list2 = []
 df_list =[sublist for sublist in df_list if all(not (isinstance(item, float) and math.isnan(item)) for item in sublist)]
 total = len(df_list)
 index = 0
+check = 198
 driver.get('https://disneyvacationclub.disney.go.com/sign-in?appRedirect=%2F&cancelUrl=%2F')
 time.sleep(2)
 iframe = driver.find_element(By.ID, 'oneid-iframe')
 driver.switch_to.frame(iframe)
+
 while (index < total):
     email = df_list[index]
     try:
@@ -63,6 +65,12 @@ while (index < total):
             print(f"{index + 1} is verified out of {total}")
             index += 1
         time.sleep(0.5)
+        check += 1
+        if (check%200 ==0):
+            df = pd.DataFrame(new_list, columns=['First_Name', 'Last_Name', 'Email', 'Status'])
+            df2 = pd.DataFrame(new_list2)
+            df.to_csv('output.csv', index=False)
+            df2.to_csv('output2.csv', index=False)
     except Exception as e:
         driver.get('https://disneyvacationclub.disney.go.com/sign-in?appRedirect=%2F&cancelUrl=%2F')
         time.sleep(2)
