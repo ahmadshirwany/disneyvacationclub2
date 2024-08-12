@@ -25,7 +25,7 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--disable-search-engine-choice-screen')
 options.add_argument("--log-level=3")
 options.add_argument("--silent")
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options,)
+driver = webdriver.Chrome(options=options)
 new_list = []
 new_list2 = []
 df_list =[sublist for sublist in df_list if all(not (isinstance(item, float) and math.isnan(item)) for item in sublist)]
